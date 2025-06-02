@@ -2,56 +2,171 @@
 
 Este repositório contém a implementação e análise de problemas clássicos da disciplina **Construção e Análise de Algoritmos**. Abaixo estão duas análises detalhadas de algoritmos resolvidos neste trabalho.
 
--------------------------------------------------------------------------------------------------------------
 
-## ♟️ Algoritmo 2 – Problema das N Damas
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### 🧩 Descrição
-Colocar `N` damas em um tabuleiro `N x N` de forma que nenhuma delas se ataque. Isso significa que não podem estar na mesma linha, coluna ou diagonal. O algoritmo utiliza **backtracking** (tentativa e erro).
+📌 Algoritmo 1 – Problema das 8 Damas (Backtracking)
+Descrição:
+Resolve o problema clássico de posicionar 8 rainhas em um tabuleiro 8×8 de forma que nenhuma delas se ataque. Utiliza estratégia de backtracking, tentando colocar rainhas linha por linha e voltando (backtrack) quando encontra um impasse.
 
----
+Complexidade de Tempo – O(N ⋅ N!)
 
-### 📊 Análise de Complexidade
+Em um tabuleiro N×N, há N! (fatorial de N) possibilidades de posicionamento, pois cada linha deve conter uma rainha em uma coluna diferente.
 
-#### 🧠 Exploração de Configurações
-- O número de combinações possíveis é `N!` (fatorial de N), pois cada linha tenta colocar uma dama em cada coluna válida.
+Para cada tentativa, o algoritmo verifica:
 
-#### 🔍 Validação de Posições
-A função `podeColocarRainha()` verifica:
-- Coluna: `O(N)`
-- Diagonal superior à esquerda: `O(N)`
-- Diagonal superior à direita: `O(N)`
-- Custo total da verificação: `O(N)`
+A coluna (O(N))
 
-#### 🔁 Chamadas Recursivas
-- No pior caso, até `N!` chamadas recursivas são feitas.
-- Cada chamada realiza uma validação `O(N)`.
+A diagonal superior à esquerda (O(N))
 
-✅ **Complexidade de Tempo:**  
-```math
-O(N · N!)
+A diagonal superior à direita (O(N))
+
+Logo, o custo total de validação é O(N) por posição testada.
+
+No pior caso, são feitas N! chamadas recursivas, cada uma com custo O(N), totalizando:
+
+T(N) = N! × O(N) = O(N ⋅ N!)
+
+Complexidade de Espaço – O(N²)
+
+O tabuleiro é representado por uma matriz N×N → ocupa O(N²) espaço.
+
+A pilha de chamadas recursivas tem profundidade máxima de N, com O(1) por chamada → total O(N).
+
+Espaço total:
+
+S(N) = O(N²) + O(N) = O(N²)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+📌 Algoritmo 2 – Problema das N Damas (Backtracking)
+Descrição:
+Versão generalizada do problema anterior, recebendo o número N como entrada. Resolve o problema das N rainhas usando a mesma abordagem de backtracking.
+
+Complexidade de Tempo – O(N ⋅ N!)
+
+Igual ao caso anterior, mas agora N é variável.
+
+O número de possíveis configurações ainda é N!, e cada uma exige validação O(N).
+
+Portanto:
+
+T(N) = O(N ⋅ N!)
+
+Complexidade de Espaço – O(N²)
+
+Matriz do tabuleiro: O(N²)
+
+Pilha de recursão: O(N)
+
+Resultado final:
+
+S(N) = O(N²)
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
----------------------------------------------------------------------------
+📌 Algoritmo 3  – Mochila com Estratégia Gulosa (Limitada)
+Descrição:
+Este algoritmo resolve o problema da mochila usando uma estratégia gulosa (greedy), ou seja, ele seleciona os itens com a maior razão valor/peso primeiro, tentando maximizar o valor transportado na mochila sem ultrapassar a capacidade. Cada item só pode ser usado uma única vez.
+
+Atenção: embora seja eficiente, essa estratégia não garante a solução ótima para a mochila 0/1. Só funciona perfeitamente quando é permitido dividir itens (caso da mochila fracionária).
+
+🛠️ Estratégia do Algoritmo
+Calcula a eficiência de cada item (valor/peso).
+
+Ordena os itens pela eficiência (maior para menor).
+
+Seleciona os itens um a um até preencher a mochila ou não haver mais espaço suficiente.
+
+📊 Complexidade de Tempo – O(n log n)
+Cálculo da razão valor/peso para todos os n itens: O(n)
+
+Ordenação dos itens com base nessa razão: O(n log n)
+
+Processamento e seleção dos itens: O(n)
+
+Portanto:
+
+T(n) = O(n log n)
+
+🧠 Complexidade de Espaço – O(n)
+O algoritmo armazena todos os n itens em uma lista.
+
+Além disso, mantém uma lista para registrar os itens escolhidos.
+
+Logo:
+
+S(n) = O(n)
 
 
-## 📊 Análise de Complexidade
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 4 – Mochila com Programação Dinâmica (Limitada – 0/1)
+Descrição:
+Dado um conjunto de itens, cada um com peso e valor, este algoritmo determina o maior valor possível que pode ser colocado em uma mochila com capacidade limitada, considerando que cada item pode ser incluído no máximo uma vez.
 
-### Algoritmo 9 – Casa de praia dos algoritmos
+Complexidade de Tempo – O(n ⋅ W)
 
-#### 🔁 Complexidade de Tempo
+n é o número de itens.
 
-- **Leitura dos dados:** O(n), onde *n* é o número de arquivos.
-- **Ordenação dos arquivos:** O(n log n), pois os arquivos são ordenados com base na razão páginas/peso de cada arquivo.
-- **Seleção dos arquivos:** O(n).
-- **Impressão dos resultados:** O(n).
+W é a capacidade da mochila.
 
-**🔹 Complexidade de Tempo Total:** O(n log n)
+É usada uma matriz dp[n+1][W+1], onde cada célula depende apenas da linha anterior → complexidade é:
 
-#### 🧠 Complexidade de Espaço
+T(n, W) = O(n ⋅ W)
 
--  A complexidade de espaço total é O(n), já que a lista de arquivos é o maior consumidor de memória.
-- **🔸 Complexidade de Espaço Total:** O(n)
+Complexidade de Espaço – O(n ⋅ W)
 
+A matriz ocupa n × W células:
+
+S(n, W) = O(n ⋅ W)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 5 – Mochila com Programação Dinâmica (Ilimitada)
+Descrição:
+Versão ilimitada do problema da mochila, onde cada item pode ser incluído quantas vezes forem necessárias. O algoritmo visa maximizar o valor transportado sem ultrapassar o peso.
+
+Complexidade de Tempo – O(n ⋅ W)
+
+n é o número de itens, W é a capacidade da mochila.
+
+É usada uma abordagem de vetor linear dp[W+1].
+
+Cada valor de dp[w] é calculado iterando sobre todos os itens, resultando em:
+
+T(n, W) = O(n ⋅ W)
+
+Complexidade de Espaço – O(W)
+
+Usa apenas um vetor de tamanho W + 1.
+
+S(n, W) = O(W)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 9 – Casa de Praia dos Algoritmos (Estratégia Gulosa)
+Descrição:
+Seleciona os arquivos que devem ser armazenados em um pendrive com capacidade limitada. Cada arquivo tem um nome, número de páginas e peso. O objetivo é maximizar a quantidade total de páginas no pendrive, priorizando os arquivos com melhor razão páginas/peso.
+
+Complexidade de Tempo – O(n log n)
+
+Leitura dos dados: O(n), onde n é o número de arquivos.
+
+Ordenação dos arquivos: O(n log n), com base na razão páginas/peso.
+
+Seleção de arquivos: O(n), pois percorre os arquivos uma vez.
+
+Impressão dos resultados: O(n).
+
+Portanto:
+
+T(n) = O(n log n)
+
+Complexidade de Espaço – O(n)
+
+A estrutura de lista para armazenar os arquivos consome O(n), que é o principal consumo de memória.
+
+S(n) = O(n)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
