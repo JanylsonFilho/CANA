@@ -144,6 +144,63 @@ Usa apenas um vetor de tamanho W + 1.
 S(n, W) = O(W)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 6 – Passeio do Cavalo (Knight Tour)
+Descrição:
+Dado um tabuleiro de xadrez N×N, o cavalo deve percorrer todas as casas exatamente uma vez, seguindo as regras do seu movimento. Utiliza backtracking para explorar caminhos possíveis.
+
+Complexidade de Tempo:
+- Em cada posição, o cavalo pode tentar até 8 movimentos diferentes.
+- A profundidade da recursão é N², pois ele precisa visitar todas as casas.
+
+    T(N) = O(8^{N²})
+
+Complexidade de Espaço:
+- Pilha de recursão: profundidade até N²
+- Tabuleiro: matriz N×N
+
+    S(N) = O(N²)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 7 – Subset Sum com Força Bruta
+Descrição:
+Dado um vetor de inteiros (positivos e negativos), encontrar subconjuntos não vazios cuja soma seja zero, testando todas as combinações possíveis (força bruta).
+
+Complexidade de Tempo:
+- Gera todos os subconjuntos: 2^n
+- Para cada subconjunto, soma os elementos (com custo até O(n))
+
+    T(n) = O(2^n ⋅ n)
+
+Complexidade de Espaço:
+- Pilha recursiva: O(n)
+- Subconjunto temporário: O(n)
+
+    S(n) = O(n)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 8 – Subset Sum com Backtracking
+Descrição:
+Mesma proposta do problema anterior, mas agora com backtracking. O algoritmo tenta construir subconjuntos de forma incremental e interrompe se a soma excede ou se uma solução é encontrada.
+
+Complexidade de Tempo:
+- Pior caso: percorre todos os subconjuntos possíveis
+
+    T(n) = O(2^n)
+
+- Melhor caso: encontra solução logo no início
+
+    T(n) = O(n)
+
+Complexidade de Espaço:
+- Pilha recursiva: O(n)
+- Lista de subconjunto temporário: O(n)
+
+    S(n) = O(n)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 📌 Algoritmo 9 – Casa de Praia dos Algoritmos (Estratégia Gulosa)
 Descrição:
 Seleciona os arquivos que devem ser armazenados em um pendrive com capacidade limitada. Cada arquivo tem um nome, número de páginas e peso. O objetivo é maximizar a quantidade total de páginas no pendrive, priorizando os arquivos com melhor razão páginas/peso.
