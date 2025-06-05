@@ -170,3 +170,56 @@ S(n) = O(n)
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+📌 Algoritmo 10 – Problema do Caixeiro Viajante
+1. Complexidade de Tempo
+A análise da complexidade de tempo para este algoritmo depende principalmente de dois fatores:
+1.1 Geração de Permutações
+O método gerarPermutacoes gera todas as permutações das n cidades, o que tem complexidade:
+
+    O(n!)
+
+Isso ocorre porque existem n! permutações possíveis para um conjunto de tamanho n.
+
+1.2 Cálculo da Distância
+Para cada permutação, o algoritmo chama o método calcularDistancia, que percorre todas as cidades no percurso, com complexidade:
+
+    O(n)
+
+Como existem n! permutações e cada uma exige O(n) operações para calcular a distância total, o custo total é:
+
+    O(n ⋅ n!)
+
+Complexidade Total:
+A geração de permutações domina a análise, então a complexidade de tempo total é:
+
+    O(n ⋅ n!)
+
+2. Complexidade de Espaço
+A complexidade de espaço considera os seguintes fatores:
+
+2.1 Armazenamento das Cidades
+As cidades são armazenadas em uma lista com n elementos, cada um contendo duas coordenadas (x, y), ocupando:
+
+    O(n)
+
+2.2 Armazenamento das Permutações
+O algoritmo armazena todas as permutações em memória. Como existem n! permutações e cada uma contém n inteiros, isso ocupa:
+
+    O(n ⋅ n!)
+
+2.3 Recursão no Gerador de Permutações
+O método permutacoesHelper usa recursão com profundidade máxima n, exigindo:
+
+    O(n)
+
+Complexidade Total:
+A complexidade de espaço é dominada pelo armazenamento das permutações, logo:
+
+    O(n ⋅ n!)
+
+3. Resumo Final
+Tipo de Complexidade	Valor
+Tempo	O(n ⋅ n!)
+Espaço	O(n ⋅ n!)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
